@@ -1,0 +1,1 @@
+nasm -f elf64 -o client.o client.s && ld client.o -o client && ./client
