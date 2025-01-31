@@ -6,6 +6,7 @@ section .bss
 
 section .data
     port dw 4444
+    msg db "Key Pressed: ", 0
 
 section .text
     global _start
@@ -53,14 +54,13 @@ read_loop:
     mov rdx, 1
     syscall
 
-    cmp rax, 0  ; Si la connexion est fermée, accepter un nouveau client
+    cmp rax, 0
     jle accept_loop
 
-    ; 6. Afficher la touche reçue
     mov rax, 1
     mov rdi, 1
     mov rsi, key_buffer
     mov rdx, 1
     syscall
 
-    jmp read_loop  ; Reprendre la lecture
+    jmp read_loop
